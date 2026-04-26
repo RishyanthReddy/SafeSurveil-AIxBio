@@ -1,0 +1,378 @@
+{
+  "schema_version": "v2.evidence_graph.v1",
+  "job_id": "job_graph_001",
+  "sample_id": "sample_ecoli_001",
+  "target_drug": "tetracycline",
+  "nodes": [
+    {
+      "node_id": "sample__sample_ecoli_001",
+      "node_class": "sample",
+      "label": "sample_ecoli_001",
+      "summary": "Live-input E. coli sample under defensive AMR triage.",
+      "details": [
+        {
+          "key": "source_context",
+          "label": "Source context",
+          "value": "agricultural_surveillance_proxy",
+          "value_kind": "text"
+        }
+      ],
+      "evidence_refs": ["decision_object__summary"],
+      "artifact_refs": ["job_graph_001_input_fasta"],
+      "style": {
+        "tone": "sample",
+        "color_token": "sample",
+        "icon": "sample",
+        "importance": 5
+      }
+    },
+    {
+      "node_id": "organism__e_coli",
+      "node_class": "organism",
+      "label": "E. coli",
+      "summary": "Organism context from the persisted sample metadata.",
+      "evidence_refs": ["decision_object__summary"],
+      "style": {
+        "tone": "neutral",
+        "importance": 3
+      }
+    },
+    {
+      "node_id": "drug__tetracycline",
+      "node_class": "drug",
+      "label": "Tetracycline",
+      "summary": "Target drug for this triage case.",
+      "evidence_refs": ["decision_object__summary"],
+      "style": {
+        "tone": "policy",
+        "importance": 3
+      }
+    },
+    {
+      "node_id": "gene__tet_b",
+      "node_class": "gene",
+      "label": "tet(B)",
+      "summary": "AMRFinderPlus detected tet(B) in the sample.",
+      "details": [
+        {
+          "key": "coverage",
+          "label": "Coverage",
+          "value": 1.0,
+          "value_kind": "ratio"
+        }
+      ],
+      "evidence_refs": ["mechanistic_evidence__1"],
+      "artifact_refs": ["job_graph_001_amrfinder_raw"],
+      "style": {
+        "tone": "evidence",
+        "importance": 4
+      }
+    },
+    {
+      "node_id": "mechanism__efflux",
+      "node_class": "mechanism",
+      "label": "Efflux",
+      "summary": "Mechanism class associated with tet(B).",
+      "evidence_refs": ["mechanistic_evidence__1"],
+      "style": {
+        "tone": "evidence",
+        "importance": 4
+      }
+    },
+    {
+      "node_id": "phenotype__resistant",
+      "node_class": "phenotype_prediction",
+      "label": "Resistant phenotype",
+      "summary": "Persisted baseline prediction for tetracycline.",
+      "details": [
+        {
+          "key": "probability",
+          "label": "Probability",
+          "value": 0.953,
+          "value_kind": "ratio"
+        }
+      ],
+      "evidence_refs": ["phenotype_prediction__summary"],
+      "style": {
+        "tone": "risk",
+        "importance": 4
+      }
+    },
+    {
+      "node_id": "novelty__high",
+      "node_class": "novelty",
+      "label": "High novelty",
+      "summary": "Lineage novelty requires analyst caution.",
+      "evidence_refs": ["novelty_assessment__summary"],
+      "style": {
+        "tone": "caveat",
+        "importance": 4
+      }
+    },
+    {
+      "node_id": "qc__warn",
+      "node_class": "quality_control",
+      "label": "QC warning",
+      "summary": "Assembly QC is not fully passing.",
+      "evidence_refs": ["decision_object__assembly_qc"],
+      "style": {
+        "tone": "caveat",
+        "importance": 3
+      }
+    },
+    {
+      "node_id": "actionability__score",
+      "node_class": "actionability",
+      "label": "Actionability score",
+      "summary": "Policy score remains below immediate-action threshold.",
+      "details": [
+        {
+          "key": "actionability_score",
+          "label": "Actionability score",
+          "value": 0.63,
+          "value_kind": "ratio"
+        }
+      ],
+      "evidence_refs": ["actionability_features__summary"],
+      "style": {
+        "tone": "policy",
+        "importance": 5
+      }
+    },
+    {
+      "node_id": "decision__defer_to_lab",
+      "node_class": "decision",
+      "label": "DEFER",
+      "summary": "Final persisted triage requires lab confirmation or additional evidence.",
+      "evidence_refs": ["decision_object__triage"],
+      "style": {
+        "tone": "decision",
+        "importance": 5
+      }
+    },
+    {
+      "node_id": "rationale__manual_confirmation_required",
+      "node_class": "rationale",
+      "label": "Manual confirmation required",
+      "summary": "Rationale code from the persisted triage decision.",
+      "evidence_refs": ["decision_object__triage"],
+      "style": {
+        "tone": "policy",
+        "importance": 3
+      }
+    },
+    {
+      "node_id": "artifact__amrfinder_raw",
+      "node_class": "artifact",
+      "label": "AMRFinder raw TSV",
+      "summary": "Previewable mechanistic evidence artifact.",
+      "details": [
+        {
+          "key": "media_type",
+          "label": "Media type",
+          "value": "text/tab-separated-values",
+          "value_kind": "text"
+        }
+      ],
+      "artifact_refs": ["job_graph_001_amrfinder_raw"],
+      "style": {
+        "tone": "evidence",
+        "importance": 2
+      }
+    },
+    {
+      "node_id": "citation__decision_summary",
+      "node_class": "citation",
+      "label": "decision_object__summary",
+      "summary": "Citation used by grounded copilot and verifier surfaces.",
+      "evidence_refs": ["decision_object__summary"],
+      "style": {
+        "tone": "ai",
+        "importance": 2
+      }
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "sample_to_organism",
+      "edge_class": "has_context",
+      "source": "sample__sample_ecoli_001",
+      "target": "organism__e_coli",
+      "label": "has organism context",
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "edge_id": "sample_to_drug",
+      "edge_class": "targets",
+      "source": "sample__sample_ecoli_001",
+      "target": "drug__tetracycline",
+      "label": "targets drug",
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "edge_id": "gene_to_mechanism",
+      "edge_class": "detects",
+      "source": "gene__tet_b",
+      "target": "mechanism__efflux",
+      "label": "detected mechanism",
+      "evidence_refs": ["mechanistic_evidence__1"]
+    },
+    {
+      "edge_id": "mechanism_to_drug",
+      "edge_class": "associated_with",
+      "source": "mechanism__efflux",
+      "target": "drug__tetracycline",
+      "label": "drug association",
+      "evidence_refs": ["mechanistic_evidence__1"]
+    },
+    {
+      "edge_id": "mechanism_to_actionability",
+      "edge_class": "supports",
+      "source": "mechanism__efflux",
+      "target": "actionability__score",
+      "label": "supports actionability",
+      "evidence_refs": ["mechanistic_evidence__1", "actionability_features__summary"]
+    },
+    {
+      "edge_id": "phenotype_to_actionability",
+      "edge_class": "informs",
+      "source": "phenotype__resistant",
+      "target": "actionability__score",
+      "label": "informs policy score",
+      "evidence_refs": ["phenotype_prediction__summary"]
+    },
+    {
+      "edge_id": "novelty_to_actionability",
+      "edge_class": "constrains",
+      "source": "novelty__high",
+      "target": "actionability__score",
+      "label": "constrains actionability",
+      "evidence_refs": ["novelty_assessment__summary"]
+    },
+    {
+      "edge_id": "qc_to_actionability",
+      "edge_class": "constrains",
+      "source": "qc__warn",
+      "target": "actionability__score",
+      "label": "constrains actionability",
+      "evidence_refs": ["decision_object__assembly_qc"]
+    },
+    {
+      "edge_id": "actionability_to_decision",
+      "edge_class": "triages_as",
+      "source": "actionability__score",
+      "target": "decision__defer_to_lab",
+      "label": "triages as",
+      "evidence_refs": ["actionability_features__summary", "decision_object__triage"]
+    },
+    {
+      "edge_id": "rationale_to_decision",
+      "edge_class": "supports",
+      "source": "rationale__manual_confirmation_required",
+      "target": "decision__defer_to_lab",
+      "label": "supports decision",
+      "evidence_refs": ["decision_object__triage"]
+    },
+    {
+      "edge_id": "artifact_to_gene",
+      "edge_class": "generated_artifact",
+      "source": "artifact__amrfinder_raw",
+      "target": "gene__tet_b",
+      "label": "generated evidence",
+      "evidence_refs": ["mechanistic_evidence__1"]
+    },
+    {
+      "edge_id": "citation_to_decision",
+      "edge_class": "cites",
+      "source": "citation__decision_summary",
+      "target": "decision__defer_to_lab",
+      "label": "cites",
+      "evidence_refs": ["decision_object__summary"]
+    }
+  ],
+  "clusters": [
+    {
+      "cluster_id": "cluster__case_context",
+      "cluster_class": "case_context",
+      "label": "Case context",
+      "summary": "Sample, organism, and target drug context.",
+      "node_ids": ["sample__sample_ecoli_001", "organism__e_coli", "drug__tetracycline"],
+      "style": {
+        "tone": "sample",
+        "importance": 3
+      }
+    },
+    {
+      "cluster_id": "cluster__mechanistic_evidence",
+      "cluster_class": "mechanistic_evidence",
+      "label": "Mechanistic evidence",
+      "summary": "Detected AMR mechanism and source artifact.",
+      "node_ids": ["gene__tet_b", "mechanism__efflux", "artifact__amrfinder_raw"],
+      "style": {
+        "tone": "evidence",
+        "importance": 4
+      }
+    },
+    {
+      "cluster_id": "cluster__risk_policy",
+      "cluster_class": "policy_and_triage",
+      "label": "Risk and triage",
+      "summary": "Prediction, novelty, QC, actionability, rationale, and decision.",
+      "node_ids": [
+        "phenotype__resistant",
+        "novelty__high",
+        "qc__warn",
+        "actionability__score",
+        "rationale__manual_confirmation_required",
+        "decision__defer_to_lab"
+      ],
+      "style": {
+        "tone": "policy",
+        "importance": 5
+      }
+    }
+  ],
+  "stats": {
+    "node_count": 13,
+    "edge_count": 12,
+    "cluster_count": 3,
+    "evidence_nodes": 3,
+    "citation_nodes": 1,
+    "artifact_nodes": 1,
+    "linked_artifact_nodes": 1,
+    "artifact_linkage_ratio": 1.0,
+    "linked_citation_nodes": 1,
+    "citation_linkage_ratio": 1.0,
+    "warning_nodes": 0,
+    "connected_component_count": 1,
+    "weakly_connected": true,
+    "isolated_node_count": 0,
+    "isolated_node_ids": [],
+    "required_node_classes": [
+      "sample",
+      "organism",
+      "drug",
+      "phenotype_prediction",
+      "novelty",
+      "quality_control",
+      "actionability",
+      "decision"
+    ],
+    "present_node_classes": [
+      "sample",
+      "organism",
+      "drug",
+      "phenotype_prediction",
+      "novelty",
+      "quality_control",
+      "actionability",
+      "decision"
+    ],
+    "missing_node_classes": [],
+    "completeness_ratio": 1.0
+  },
+  "metadata": {
+    "provider_calls_triggered": false,
+    "builder": "fixture_contract_example"
+  }
+}

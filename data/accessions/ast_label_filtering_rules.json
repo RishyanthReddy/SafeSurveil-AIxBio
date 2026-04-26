@@ -1,0 +1,79 @@
+{
+  "policy_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "policy_intent": "Preserve evaluation credibility by keeping only traceable phenotype labels and by separating ambiguous or inferred rows from benchmark-ready rows.",
+  "allowed_primary_labels": [
+    "resistant",
+    "susceptible",
+    "intermediate"
+  ],
+  "include_rules": [
+    {
+      "rule_id": "include_lab_derived_primary_labels",
+      "applies_when": "phenotype is one of resistant, susceptible, or intermediate and label_source is lab-derived or traceably curated from lab-derived testing",
+      "result": "include"
+    },
+    {
+      "rule_id": "include_fixture_rows_for_smoke_only",
+      "applies_when": "record_kind is fixture and fixture policy allows smoke/demo usage",
+      "result": "include_fixture_only"
+    }
+  ],
+  "exclude_rules": [
+    {
+      "reason_code": "unknown_label",
+      "applies_when": "phenotype is blank, unknown, pending, or not_reported",
+      "result": "exclude"
+    },
+    {
+      "reason_code": "inferred_only_label",
+      "applies_when": "phenotype is derived from computation or unsupported text rather than traceable testing metadata",
+      "result": "exclude_for_training"
+    },
+    {
+      "reason_code": "conflicting_duplicate_records",
+      "applies_when": "same organism-drug record resolves to multiple incompatible phenotype calls after normalization",
+      "result": "exclude_until_manual_review"
+    },
+    {
+      "reason_code": "target_drug_missing",
+      "applies_when": "multi-panel row does not provide a clear label for the locked target drug",
+      "result": "exclude"
+    },
+    {
+      "reason_code": "unclear_provenance",
+      "applies_when": "source record or label source cannot be traced back to a public origin",
+      "result": "exclude"
+    }
+  ],
+  "duplicate_resolution_priority": [
+    "lab_derived_primary_source",
+    "traceably_curated_public_source",
+    "fixture_demo_safe"
+  ],
+  "review_required_rules": [
+    {
+      "reason_code": "manual_review_needed_for_drug_alias",
+      "applies_when": "drug term falls into a manual review alias bucket"
+    },
+    {
+      "reason_code": "partial_metadata_trace",
+      "applies_when": "phenotype is usable but one or more provenance fields are incomplete"
+    }
+  ],
+  "reporting_buckets": [
+    "included_training_ready",
+    "included_fixture_only",
+    "excluded_unknown_label",
+    "excluded_inferred_only_label",
+    "excluded_conflicting_duplicate_records",
+    "excluded_target_drug_missing",
+    "excluded_unclear_provenance",
+    "review_required"
+  ],
+  "guardrails": [
+    "Do not silently convert inferred labels into benchmark-ready labels.",
+    "Do not keep conflicting duplicates by majority vote alone.",
+    "Do not collapse intermediate into resistant or susceptible during dataset filtering."
+  ]
+}

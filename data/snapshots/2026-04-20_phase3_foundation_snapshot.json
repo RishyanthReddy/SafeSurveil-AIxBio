@@ -1,0 +1,51 @@
+{
+  "snapshot_id": "phase3_foundation_2026_04_20",
+  "snapshot_version": "0.1.0",
+  "status": "phase3_policy_ready",
+  "created_at": "2026-04-20T00:00:00Z",
+  "scope_file": "data/accessions/dataset_scope.json",
+  "source_policy_file": "data/accessions/source_priority_policy.json",
+  "manifest_schema_file": "data/accessions/accession_manifest_schema.json",
+  "seed_manifest_file": "data/accessions/seed_accession_manifest.csv",
+  "normalization_rules_file": "data/accessions/metadata_normalization_rules.json",
+  "label_filtering_rules_file": "data/accessions/ast_label_filtering_rules.json",
+  "freeze_procedure_file": "data/snapshots/dataset_freeze_procedure.json",
+  "split_strategy_file": "data/snapshots/split_strategy.json",
+  "example_split_manifest_file": "data/snapshots/example_split_manifest.csv",
+  "dataset_qa_template_file": "data/snapshots/dataset_qa_report_template.json",
+  "dataset_acceptance_matrix_file": "data/snapshots/dataset_acceptance_matrix.json",
+  "fixture_policy_file": "data/fixtures/smoke/smoke_fixture_policy.json",
+  "fixture_files": [
+    "data/fixtures/smoke/sample_001.fasta",
+    "data/fixtures/smoke/sample_001.metadata.json"
+  ],
+  "mash_reference_files": [
+    "data/fixtures/smoke/reference_ec_001.fasta"
+  ],
+  "metadata_checksum_sha256": "b096ada3eb1de2dd4ed25185db26d54c8eb9f51c0a30162321b13793f07efc9d",
+  "raw_data_roots": [
+    "data/downloads",
+    "data/cache"
+  ],
+  "committed_summary_files": [
+    "data/accessions/dataset_scope.json",
+    "data/accessions/source_priority_policy.json",
+    "data/accessions/accession_manifest_schema.json",
+    "data/accessions/seed_accession_manifest.csv",
+    "data/accessions/metadata_normalization_rules.json",
+    "data/accessions/ast_label_filtering_rules.json",
+    "data/snapshots/dataset_freeze_procedure.json",
+    "data/snapshots/split_strategy.json",
+    "data/snapshots/example_split_manifest.csv",
+    "data/snapshots/dataset_qa_report_template.json",
+    "data/snapshots/dataset_acceptance_matrix.json"
+  ],
+  "record_counts": {
+    "fixture_rows": 1,
+    "planned_public_rows": 6
+  },
+  "notes": [
+    "This snapshot ties together the scope, policies, filtering, split rules, and first smoke fixture before public retrieval begins.",
+    "The manifest explains the dataset foundation without relying on live website state."
+  ]
+}

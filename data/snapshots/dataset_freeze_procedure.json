@@ -1,0 +1,33 @@
+{
+  "procedure_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "snapshot_id_pattern": "phase3_{yyyy_mm_dd}_{scope_tag}",
+  "raw_data_roots": [
+    "data/downloads",
+    "data/cache"
+  ],
+  "committed_summary_roots": [
+    "data/accessions",
+    "data/snapshots",
+    "docs/data"
+  ],
+  "metadata_checksum_target": "data/accessions/seed_accession_manifest.csv",
+  "freeze_steps": [
+    "Confirm the locked scope file still matches the intended organism and drug panel.",
+    "Refresh or review the accession manifest and update retrieval_status, retrieval_date, and label source fields.",
+    "Keep raw downloaded files under ignored roots only.",
+    "Compute SHA256 for the accession manifest used by the snapshot.",
+    "Update the snapshot manifest with checksum, referenced policy files, and summary counts.",
+    "Save a committed summary file set that explains the snapshot without needing live website state."
+  ],
+  "planned_script_names": [
+    "fetch_public_metadata",
+    "freeze_snapshot_manifest",
+    "build_split_manifest"
+  ],
+  "guardrails": [
+    "Do not commit bulky raw downloads to the repository.",
+    "Do not freeze a snapshot that contains unclear provenance rows marked included.",
+    "Do not rely on unstated browser state to explain what a snapshot contains."
+  ]
+}

@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --color-surface: #fcf8fa;
+  --color-surface-panel: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-surface-strong: #e2e8f0;
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-line: #cbd5e1;
+  --color-act: #b91c1c;
+  --color-review: #92400e;
+  --color-defer: #475569;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--color-surface);
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(226, 232, 240, 0.85), transparent 34rem),
+    linear-gradient(135deg, #fcf8fa 0%, #f8fafc 48%, #eef2f7 100%);
+  color: var(--color-ink);
+  font-family: "Public Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #dbeafe;
+  color: var(--color-ink);
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+@layer components {
+  .clinical-panel {
+    @apply rounded-lg border border-line bg-surface-panel shadow-clinical;
+  }
+
+  .label-caps {
+    @apply font-body text-[0.7rem] font-bold uppercase leading-none tracking-[0.12em];
+  }
+
+  .route-card {
+    @apply clinical-panel p-5 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-slate-700 active:translate-y-0;
+  }
+}

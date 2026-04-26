@@ -1,0 +1,80 @@
+{
+  "policy_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "policy_intent": "Prefer public, reproducible metadata and retrieval paths that keep the repo lightweight and the smoke workflow buildable.",
+  "source_order": [
+    {
+      "source_id": "bv_brc_amr_metadata",
+      "priority": 1,
+      "role": "phenotype labels and richer isolate metadata",
+      "official_reference_url": "https://www.bv-brc.org/docs/system_documentation/data.html"
+    },
+    {
+      "source_id": "ncbi_datasets_genome_package",
+      "priority": 2,
+      "role": "assembly FASTA retrieval and assembly metadata",
+      "official_reference_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/v2/how-tos/genomes/download-genome/"
+    },
+    {
+      "source_id": "ncbi_datasets_assembly_report",
+      "priority": 3,
+      "role": "structured assembly and BioSample-linked metadata",
+      "official_reference_url": "https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-packages/genome/"
+    },
+    {
+      "source_id": "optional_pathogen_detection_enrichment",
+      "priority": 4,
+      "role": "later enrichment only after the smoke workflow is stable",
+      "official_reference_url": "https://www.ncbi.nlm.nih.gov/pathogens/"
+    }
+  ],
+  "field_priority": {
+    "assembly_fasta": {
+      "preferred_source": "ncbi_datasets_genome_package",
+      "fallback_source": "bv_brc_genome_export"
+    },
+    "assembly_accession": {
+      "preferred_source": "ncbi_datasets_assembly_report",
+      "fallback_source": "bv_brc_genome_metadata"
+    },
+    "biosample_accession": {
+      "preferred_source": "ncbi_datasets_assembly_report",
+      "fallback_source": "bv_brc_genome_metadata"
+    },
+    "organism": {
+      "preferred_source": "bv_brc_genome_metadata",
+      "fallback_source": "ncbi_datasets_assembly_report"
+    },
+    "target_drug": {
+      "preferred_source": "bv_brc_amr_metadata",
+      "fallback_source": "manual_review_or_exclude"
+    },
+    "phenotype_label": {
+      "preferred_source": "bv_brc_amr_metadata",
+      "fallback_source": "exclude_row_if_unavailable"
+    },
+    "collection_date": {
+      "preferred_source": "bv_brc_genome_metadata",
+      "fallback_source": "ncbi_biosample_or_null"
+    },
+    "country": {
+      "preferred_source": "bv_brc_genome_metadata",
+      "fallback_source": "ncbi_biosample_or_null"
+    },
+    "source_context": {
+      "preferred_source": "bv_brc_host_and_isolate_metadata",
+      "fallback_source": "manual_review_or_agricultural_surveillance_proxy"
+    }
+  },
+  "retrieval_rules": {
+    "public_only": true,
+    "local_downloads_must_stay_ignored": true,
+    "do_not_commit_raw_bulk_downloads": true,
+    "exclude_unclear_provenance_rows": true,
+    "prefer_documented_cli_or_export_paths": true
+  },
+  "notes": [
+    "Use fixture-backed smoke runs before public retrieval is complete.",
+    "Do not treat inferred labels as interchangeable with lab-derived labels."
+  ]
+}

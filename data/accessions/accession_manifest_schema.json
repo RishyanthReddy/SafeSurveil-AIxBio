@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.1.0",
+  "format": "csv",
+  "csv_file": "seed_accession_manifest.csv",
+  "required_columns": [
+    "record_id",
+    "record_kind",
+    "sample_id",
+    "organism",
+    "target_drug",
+    "source_database",
+    "source_record_id",
+    "assembly_accession",
+    "biosample_accession",
+    "retrieval_status",
+    "retrieval_date",
+    "label_source",
+    "phenotype",
+    "source_context",
+    "inclusion_status",
+    "inclusion_reason",
+    "filtering_reason",
+    "notes"
+  ],
+  "enum_like_fields": {
+    "record_kind": [
+      "fixture",
+      "planned_public",
+      "public_downloaded",
+      "public_excluded"
+    ],
+    "retrieval_status": [
+      "ready",
+      "pending",
+      "downloaded",
+      "excluded"
+    ],
+    "inclusion_status": [
+      "included",
+      "planned",
+      "excluded"
+    ],
+    "phenotype": [
+      "resistant",
+      "susceptible",
+      "intermediate",
+      "unknown",
+      ""
+    ]
+  },
+  "notes": [
+    "Leave accession fields blank for planned rows until retrieval is complete.",
+    "Every included row must explain why it is in scope.",
+    "Use filtering_reason for excluded or ambiguous public rows."
+  ]
+}

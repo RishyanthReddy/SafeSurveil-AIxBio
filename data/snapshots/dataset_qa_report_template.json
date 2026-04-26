@@ -1,0 +1,30 @@
+{
+  "template_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "required_sections": [
+    "snapshot_summary",
+    "counts_by_organism_and_drug",
+    "phenotype_distribution",
+    "label_source_distribution",
+    "missingness_summary",
+    "duplicate_and_conflict_summary",
+    "split_summary",
+    "novelty_bucket_summary",
+    "fit_for_use_decision"
+  ],
+  "required_tables": [
+    "organism_drug_counts",
+    "phenotype_counts",
+    "source_counts",
+    "split_counts",
+    "missing_field_counts"
+  ],
+  "required_questions": [
+    "Is the smoke pair covered by at least one usable record or fixture?",
+    "Which rows were excluded and for what reason?",
+    "Are any organism-drug pairs too sparse for honest training claims?",
+    "Does the lineage-aware split keep related samples together?",
+    "Should the snapshot be accepted, warned, narrowed, or rejected?"
+  ],
+  "output_note": "The QA report can be emitted as markdown, JSON, or both, but it must answer the required questions explicitly."
+}

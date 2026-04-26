@@ -1,0 +1,122 @@
+{
+  "schema_version": "v2.reasoning_trace.v1",
+  "job_id": "JOB_Trace_001",
+  "sample_id": "Sample_Ecoli_001",
+  "target_drug": "Tetracycline",
+  "decision": "defer_to_lab",
+  "severity": "high",
+  "summary": "The case is deferred because the decision object combines mechanistic support with high novelty, QC limits, and incomplete metadata.",
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "sample_context",
+      "title": "Sample and target context",
+      "text": "The case evaluates an E. coli sample against tetracycline using persisted job evidence.",
+      "status": "grounded",
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "step_number": 2,
+      "step_type": "phenotype_prediction",
+      "title": "Phenotype prediction",
+      "text": "The persisted phenotype prediction reports a resistant signal for the target drug.",
+      "status": "grounded",
+      "evidence_refs": ["phenotype_prediction__summary"]
+    },
+    {
+      "step_number": 3,
+      "step_type": "mechanistic_evidence",
+      "title": "Mechanistic evidence",
+      "text": "AMRFinderPlus evidence reports a supported tetracycline-relevant mechanism.",
+      "status": "grounded",
+      "evidence_refs": ["mechanistic_evidence__1"]
+    },
+    {
+      "step_number": 4,
+      "step_type": "mechanism_drug_interpretation",
+      "title": "Mechanism to drug interpretation",
+      "text": "The supported mechanism is treated as concordant evidence for the target drug context.",
+      "status": "grounded",
+      "evidence_refs": ["mechanistic_evidence__1", "actionability_features__summary"]
+    },
+    {
+      "step_number": 5,
+      "step_type": "novelty_lineage_shift",
+      "title": "Novelty and lineage shift",
+      "text": "The novelty layer flags elevated lineage shift, so the case needs analyst review before action.",
+      "status": "caveated",
+      "evidence_refs": ["novelty_assessment__summary"],
+      "caveat_ids": ["novelty_uncertainty"]
+    },
+    {
+      "step_number": 6,
+      "step_type": "qc_metadata_limitations",
+      "title": "QC and metadata limitations",
+      "text": "Assembly QC and metadata completeness limit confidence in immediate operational action.",
+      "status": "caveated",
+      "evidence_refs": ["decision_object__assembly_qc", "decision_object__warnings"],
+      "caveat_ids": ["qc_warning_present"]
+    },
+    {
+      "step_number": 7,
+      "step_type": "actionability_policy",
+      "title": "Actionability policy interpretation",
+      "text": "The actionability score does not meet the configured policy threshold for immediate action.",
+      "status": "grounded",
+      "evidence_refs": ["actionability_features__summary"]
+    },
+    {
+      "step_number": 8,
+      "step_type": "final_triage",
+      "title": "Final triage and next step",
+      "text": "The final triage is defer to lab, with confirmation or additional evidence required before action.",
+      "status": "grounded",
+      "evidence_refs": ["decision_object__triage", "decision_object__summary"]
+    }
+  ],
+  "coverage": {
+    "required_step_types": [
+      "sample_context",
+      "phenotype_prediction",
+      "mechanistic_evidence",
+      "mechanism_drug_interpretation",
+      "novelty_lineage_shift",
+      "qc_metadata_limitations",
+      "actionability_policy",
+      "final_triage"
+    ],
+    "present_step_types": [
+      "sample_context",
+      "phenotype_prediction",
+      "mechanistic_evidence",
+      "mechanism_drug_interpretation",
+      "novelty_lineage_shift",
+      "qc_metadata_limitations",
+      "actionability_policy",
+      "final_triage"
+    ],
+    "missing_step_types": [],
+    "required_steps": 8,
+    "present_steps": 8,
+    "coverage_ratio": 1.0
+  },
+  "caveats": [
+    {
+      "caveat_id": "novelty_uncertainty",
+      "severity": "limitation",
+      "title": "Novelty evidence needs review",
+      "detail": "The novelty assessment requires analyst interpretation before operational action.",
+      "evidence_refs": ["novelty_assessment__summary"]
+    },
+    {
+      "caveat_id": "qc_warning_present",
+      "severity": "warning",
+      "title": "QC warning present",
+      "detail": "The persisted decision object reports QC or metadata limitations.",
+      "evidence_refs": ["decision_object__assembly_qc", "decision_object__warnings"]
+    }
+  ],
+  "metadata": {
+    "generated_by": "contract_fixture"
+  }
+}

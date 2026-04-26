@@ -1,0 +1,31 @@
+{
+  "policy_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "fixture_mode": "synthetic_demo_safe",
+  "allowed_uses": [
+    "contract_tests",
+    "backend_smoke",
+    "api_smoke",
+    "ui_smoke",
+    "demo_rehearsal"
+  ],
+  "not_allowed_uses": [
+    "benchmark_reporting",
+    "threshold_tuning",
+    "final_submission_metrics"
+  ],
+  "fallback_outputs_allowed": [
+    "mock_mechanistic_evidence",
+    "mock_novelty_assessment",
+    "mock_prediction",
+    "mock_semantic_ui"
+  ],
+  "labeling_rules": [
+    "Every fixture-backed screen or summary must be tagged fixture-backed or demo-safe.",
+    "Do not present synthetic outputs as public download results."
+  ],
+  "guardrails": [
+    "Keep fixtures small and repository-friendly.",
+    "Prefer one known-good case over many weak synthetic cases."
+  ]
+}

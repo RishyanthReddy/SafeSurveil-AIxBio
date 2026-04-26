@@ -1,0 +1,53 @@
+{
+  "strategy_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "primary_intent": "Evaluate both a simple baseline split and a lineage-aware split that reduces related-sample leakage.",
+  "random_baseline": {
+    "enabled": true,
+    "seed": 20260420,
+    "split_ratios": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "stratify_by": [
+      "organism",
+      "target_drug",
+      "phenotype"
+    ]
+  },
+  "lineage_aware": {
+    "enabled": true,
+    "primary_grouping_signal": "mash_distance_cluster",
+    "fallback_grouping_signal": "assembly_accession_or_record_cluster",
+    "cluster_distance_threshold": 0.05,
+    "group_assignment_seed": 20260421,
+    "split_ratios": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "max_allowed_group_leakage": 0,
+    "group_fields": [
+      "organism",
+      "target_drug",
+      "lineage_group_id"
+    ]
+  },
+  "output_manifest_fields": [
+    "record_id",
+    "sample_id",
+    "organism",
+    "target_drug",
+    "phenotype",
+    "lineage_group_id",
+    "random_split",
+    "lineage_aware_split",
+    "notes"
+  ],
+  "guardrails": [
+    "Do not use only random splits for final claims.",
+    "Keep members of the same lineage group in a single lineage-aware split.",
+    "Document the seed and grouping rule used for every saved split manifest."
+  ]
+}

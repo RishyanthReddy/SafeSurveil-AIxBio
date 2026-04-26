@@ -1,0 +1,73 @@
+{
+  "policy_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "organism_aliases": {
+    "e_coli": "e_coli",
+    "escherichia_coli": "e_coli",
+    "escherichia coli": "e_coli",
+    "s_aureus": "s_aureus",
+    "staphylococcus_aureus": "s_aureus",
+    "staphylococcus aureus": "s_aureus"
+  },
+  "drug_aliases": {
+    "tetracycline": "tetracycline",
+    "tetracycline_hcl": "tetracycline",
+    "ampicillin": "ampicillin",
+    "ciprofloxacin": "ciprofloxacin",
+    "erythromycin": "erythromycin",
+    "oxacillin": "oxacillin",
+    "trimethoprim/sulfamethoxazole": "trimethoprim_sulfamethoxazole"
+  },
+  "manual_review_required_drug_terms": [
+    "methicillin",
+    "mrsa_screen",
+    "beta_lactam_unspecified"
+  ],
+  "phenotype_aliases": {
+    "r": "resistant",
+    "resistant": "resistant",
+    "s": "susceptible",
+    "susceptible": "susceptible",
+    "i": "intermediate",
+    "intermediate": "intermediate"
+  },
+  "ambiguous_phenotype_terms": [
+    "non_susceptible",
+    "decreased_susceptibility",
+    "not_reported",
+    "pending"
+  ],
+  "source_context_aliases": {
+    "bovine_mastitis": "bovine_mastitis",
+    "mastitis": "bovine_mastitis",
+    "agricultural_surveillance_proxy": "agricultural_surveillance_proxy",
+    "local_upload": "local_upload",
+    "fixture": "fixture"
+  },
+  "country_aliases": {
+    "india": "IN",
+    "in": "IN",
+    "united_states": "US",
+    "usa": "US",
+    "us": "US"
+  },
+  "missing_value_markers": [
+    "",
+    "na",
+    "n/a",
+    "null",
+    "none",
+    "not_collected",
+    "unknown"
+  ],
+  "date_rules": {
+    "preferred_format": "YYYY-MM-DD",
+    "year_only_values_become_partial": true,
+    "invalid_dates_become_null": true
+  },
+  "guardrails": [
+    "Do not collapse ambiguous phenotype terms into resistant or susceptible.",
+    "Do not auto-convert methicillin-like labels into oxacillin without manual review.",
+    "Do not invent missing collection dates or countries."
+  ]
+}

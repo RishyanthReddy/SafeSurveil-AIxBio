@@ -1,0 +1,5140 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SafeSurveil-AIxBio Backend",
+    "description": "Local-first backend orchestration API for the SafeSurveil-AIxBio MVP.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health Check",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Check Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/integrations": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Integration Health Check",
+        "operationId": "integration_health_check_health_integrations_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Integration Health Check Health Integrations Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/analyze": {
+      "post": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Analyze Job",
+        "operationId": "analyze_job_jobs_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeJobRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyzeJobResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/status": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Status",
+        "operationId": "get_job_status_jobs__job_id__status_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatus"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/decision": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Decision",
+        "operationId": "get_job_decision_jobs__job_id__decision_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDecisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/artifacts": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Artifacts",
+        "operationId": "get_job_artifacts_jobs__job_id__artifacts_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtifactManifest"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/verification": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Verification",
+        "operationId": "get_job_verification_jobs__job_id__verification_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionGateReport"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/reasoning-trace": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Reasoning Trace",
+        "operationId": "get_job_reasoning_trace_jobs__job_id__reasoning_trace_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReasoningTrace"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/evidence-graph": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Evidence Graph",
+        "operationId": "get_job_evidence_graph_jobs__job_id__evidence_graph_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvidenceGraph"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/v2-audit": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job V2 Audit",
+        "operationId": "get_job_v2_audit_jobs__job_id__v2_audit_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2AuditBundle"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/artifacts/{artifact_id}/preview": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Preview Job Artifact",
+        "operationId": "preview_job_artifact_jobs__job_id__artifacts__artifact_id__preview_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "artifact_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Artifact Id"
+            }
+          },
+          {
+            "name": "max_bytes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 262144,
+              "minimum": 1,
+              "default": 65536,
+              "title": "Max Bytes"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtifactPreviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/copilot/explanation": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Copilot Explanation",
+        "operationId": "get_job_copilot_explanation_jobs__job_id__copilot_explanation_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "refresh",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Refresh"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCopilotResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/copilot/answer": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Copilot Answer",
+        "operationId": "get_job_copilot_answer_jobs__job_id__copilot_answer_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "question",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 400,
+              "title": "Question"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCopilotResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/copilot/queue-summary": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Copilot Queue Summary",
+        "operationId": "get_job_copilot_queue_summary_jobs__job_id__copilot_queue_summary_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCopilotResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/semantic-ui": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Semantic Ui",
+        "operationId": "get_job_semantic_ui_jobs__job_id__semantic_ui_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobSemanticUIResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{job_id}/semantic-ui/c1": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Job Semantic Ui C1",
+        "operationId": "get_job_semantic_ui_c1_jobs__job_id__semantic_ui_c1_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobThesysC1Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/queue": {
+      "get": {
+        "tags": [
+          "queue"
+        ],
+        "summary": "Get Queue Summary",
+        "operationId": "get_queue_summary_queue_get",
+        "parameters": [
+          {
+            "name": "triage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/TriageOutcome"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Triage"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/JobState"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueueSummaryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActionabilityFeatures": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "actionability_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Actionability Score"
+          },
+          "mechanism_concordance": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mechanism Concordance"
+          },
+          "prediction_entropy": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prediction Entropy"
+          },
+          "qc_risk": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Qc Risk"
+          },
+          "novelty_risk": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Novelty Risk"
+          },
+          "metadata_completeness": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Metadata Completeness"
+          },
+          "threshold_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Threshold Version"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "actionability_score",
+          "qc_risk",
+          "novelty_risk",
+          "metadata_completeness",
+          "threshold_version"
+        ],
+        "title": "ActionabilityFeatures"
+      },
+      "AnalyzeJobRequest": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "organism_hint": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OrganismHint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "fasta_path": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fasta Path"
+          },
+          "fasta_uri": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fasta Uri"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/SampleMetadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sample_id",
+          "target_drug"
+        ],
+        "title": "AnalyzeJobRequest",
+        "description": "API request mirror of the first local analyze endpoint."
+      },
+      "AnalyzeJobResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobState"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "status"
+        ],
+        "title": "AnalyzeJobResponse"
+      },
+      "AnswerBlockType": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "bullets",
+          "next_steps",
+          "refusal"
+        ],
+        "title": "AnswerBlockType"
+      },
+      "ArtifactKind": {
+        "type": "string",
+        "enum": [
+          "input_fasta",
+          "mechanistic_evidence",
+          "novelty_summary",
+          "prediction_summary",
+          "decision_object",
+          "copilot_output",
+          "semantic_ui",
+          "plot",
+          "screenshot",
+          "other"
+        ],
+        "title": "ArtifactKind"
+      },
+      "ArtifactManifest": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "artifact_root": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Root"
+          },
+          "artifacts": {
+            "items": {
+              "$ref": "#/components/schemas/ArtifactRecord"
+            },
+            "type": "array",
+            "title": "Artifacts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug"
+        ],
+        "title": "ArtifactManifest"
+      },
+      "ArtifactPreviewResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "artifact_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Artifact Id"
+          },
+          "media_type": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Media Type"
+          },
+          "encoding": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 3,
+            "title": "Encoding"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 400000,
+            "title": "Content"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated",
+            "default": false
+          },
+          "size_bytes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Size Bytes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "artifact_id",
+          "media_type",
+          "encoding",
+          "content"
+        ],
+        "title": "ArtifactPreviewResponse"
+      },
+      "ArtifactRecord": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "artifact_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Artifact Id"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ArtifactKind"
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 512,
+            "minLength": 1,
+            "title": "Path"
+          },
+          "media_type": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Media Type"
+          },
+          "generated_by": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Generated By"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 16
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sha256"
+          },
+          "size_bytes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Size Bytes"
+          },
+          "preview_eligible": {
+            "type": "boolean",
+            "title": "Preview Eligible",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "kind",
+          "path",
+          "media_type",
+          "generated_by",
+          "preview_eligible"
+        ],
+        "title": "ArtifactRecord"
+      },
+      "AssemblyQC": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "file_valid": {
+            "type": "boolean",
+            "title": "File Valid"
+          },
+          "sequence_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Sequence Count"
+          },
+          "total_bases": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total Bases"
+          },
+          "ambiguous_base_fraction": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Ambiguous Base Fraction"
+          },
+          "organism_consistency": {
+            "$ref": "#/components/schemas/OrganismConsistency",
+            "default": "unknown"
+          },
+          "missing_metadata_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Metadata Fields"
+          },
+          "qc_status": {
+            "$ref": "#/components/schemas/QCStatus"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "file_valid",
+          "sequence_count",
+          "total_bases",
+          "ambiguous_base_fraction",
+          "qc_status"
+        ],
+        "title": "AssemblyQC"
+      },
+      "CalibrationStatus": {
+        "type": "string",
+        "enum": [
+          "calibrated",
+          "uncalibrated",
+          "not_available"
+        ],
+        "title": "CalibrationStatus"
+      },
+      "ChartType": {
+        "type": "string",
+        "enum": [
+          "bar",
+          "line",
+          "area",
+          "radial"
+        ],
+        "title": "ChartType"
+      },
+      "CitationValiditySummary": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "allowed_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Allowed Evidence Ids"
+          },
+          "cited_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Cited Evidence Ids"
+          },
+          "invalid_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Invalid Evidence Ids"
+          },
+          "missing_required_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Required Evidence Ids"
+          },
+          "validity_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Validity Ratio"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "validity_ratio"
+        ],
+        "title": "CitationValiditySummary"
+      },
+      "CopilotAnswerBlock": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "block_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Block Id"
+          },
+          "block_type": {
+            "$ref": "#/components/schemas/AnswerBlockType"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 5,
+            "title": "Content"
+          },
+          "cited_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Cited Evidence Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "block_id",
+          "block_type",
+          "content"
+        ],
+        "title": "CopilotAnswerBlock"
+      },
+      "CopilotOutputMode": {
+        "type": "string",
+        "enum": [
+          "live_llm",
+          "mock",
+          "cached",
+          "fallback"
+        ],
+        "title": "CopilotOutputMode"
+      },
+      "CopilotOutputOrigin": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/CopilotOutputMode"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "mode"
+        ],
+        "title": "CopilotOutputOrigin"
+      },
+      "CopilotResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000,
+                "minLength": 10
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "next_steps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Next Steps"
+          },
+          "refusal_required": {
+            "type": "boolean",
+            "title": "Refusal Required",
+            "default": false
+          },
+          "refusal_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400,
+                "minLength": 10
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refusal Reason"
+          },
+          "cited_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Cited Evidence Ids"
+          },
+          "answer_blocks": {
+            "items": {
+              "$ref": "#/components/schemas/CopilotAnswerBlock"
+            },
+            "type": "array",
+            "title": "Answer Blocks"
+          },
+          "semantic_ui": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SemanticUIObject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug"
+        ],
+        "title": "CopilotResponse"
+      },
+      "DecisionCardBlock": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "triage_decision": {
+            "$ref": "#/components/schemas/TriageOutcome"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 10,
+            "title": "Summary"
+          },
+          "metrics": {
+            "items": {
+              "$ref": "#/components/schemas/MetricDatum"
+            },
+            "type": "array",
+            "title": "Metrics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title",
+          "triage_decision",
+          "severity",
+          "summary"
+        ],
+        "title": "DecisionCardBlock"
+      },
+      "DecisionObject": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Id"
+          },
+          "sample": {
+            "$ref": "#/components/schemas/SampleInput"
+          },
+          "assembly_qc": {
+            "$ref": "#/components/schemas/AssemblyQC"
+          },
+          "mechanistic_evidence": {
+            "items": {
+              "$ref": "#/components/schemas/MechanisticEvidence"
+            },
+            "type": "array",
+            "title": "Mechanistic Evidence"
+          },
+          "phenotype_prediction": {
+            "$ref": "#/components/schemas/PhenotypePrediction"
+          },
+          "novelty_assessment": {
+            "$ref": "#/components/schemas/NoveltyAssessment"
+          },
+          "actionability_features": {
+            "$ref": "#/components/schemas/ActionabilityFeatures"
+          },
+          "triage_decision": {
+            "$ref": "#/components/schemas/TriageDecision"
+          },
+          "rationale_codes": {
+            "items": {
+              "$ref": "#/components/schemas/RationaleCode"
+            },
+            "type": "array",
+            "title": "Rationale Codes"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "artifact_manifest_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifact Manifest Id"
+          },
+          "provenance_notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Provenance Notes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sample",
+          "assembly_qc",
+          "phenotype_prediction",
+          "novelty_assessment",
+          "actionability_features",
+          "triage_decision"
+        ],
+        "title": "DecisionObject"
+      },
+      "EvidenceCoverageSummary": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "required_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Required Evidence Ids"
+          },
+          "covered_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Covered Evidence Ids"
+          },
+          "missing_evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Evidence Ids"
+          },
+          "coverage_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Coverage Ratio"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "coverage_ratio"
+        ],
+        "title": "EvidenceCoverageSummary"
+      },
+      "EvidenceGraph": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphNode"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Nodes"
+          },
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphEdge"
+            },
+            "type": "array",
+            "title": "Edges"
+          },
+          "clusters": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphCluster"
+            },
+            "type": "array",
+            "title": "Clusters"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/EvidenceGraphStats"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "nodes",
+          "stats"
+        ],
+        "title": "EvidenceGraph"
+      },
+      "EvidenceGraphCluster": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "cluster_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Cluster Id"
+          },
+          "cluster_class": {
+            "$ref": "#/components/schemas/EvidenceGraphClusterClass"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "node_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Node Ids"
+          },
+          "style": {
+            "$ref": "#/components/schemas/EvidenceGraphStyleHint"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cluster_id",
+          "cluster_class",
+          "label",
+          "node_ids"
+        ],
+        "title": "EvidenceGraphCluster"
+      },
+      "EvidenceGraphClusterClass": {
+        "type": "string",
+        "enum": [
+          "case_context",
+          "mechanistic_evidence",
+          "risk_signals",
+          "policy_and_triage",
+          "ai_sidecars",
+          "audit"
+        ],
+        "title": "EvidenceGraphClusterClass"
+      },
+      "EvidenceGraphDetailField": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          },
+          "value_kind": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 2,
+            "title": "Value Kind",
+            "default": "text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label"
+        ],
+        "title": "EvidenceGraphDetailField"
+      },
+      "EvidenceGraphEdge": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "edge_id": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 3,
+            "title": "Edge Id"
+          },
+          "edge_class": {
+            "$ref": "#/components/schemas/EvidenceGraphEdgeClass"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Source"
+          },
+          "target": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Target"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "weight": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Weight",
+            "default": 1.0
+          },
+          "directed": {
+            "type": "boolean",
+            "title": "Directed",
+            "default": true
+          },
+          "style": {
+            "$ref": "#/components/schemas/EvidenceGraphStyleHint"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "edge_id",
+          "edge_class",
+          "source",
+          "target",
+          "label"
+        ],
+        "title": "EvidenceGraphEdge"
+      },
+      "EvidenceGraphEdgeClass": {
+        "type": "string",
+        "enum": [
+          "has_context",
+          "targets",
+          "predicts",
+          "detects",
+          "associated_with",
+          "supports",
+          "informs",
+          "constrains",
+          "triages_as",
+          "cites",
+          "generated_artifact",
+          "verified_by",
+          "explains",
+          "caveats",
+          "linked_to"
+        ],
+        "title": "EvidenceGraphEdgeClass"
+      },
+      "EvidenceGraphNode": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "node_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Node Id"
+          },
+          "node_class": {
+            "$ref": "#/components/schemas/EvidenceGraphNodeClass"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Label"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "details": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphDetailField"
+            },
+            "type": "array",
+            "title": "Details"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "artifact_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Artifact Refs"
+          },
+          "style": {
+            "$ref": "#/components/schemas/EvidenceGraphStyleHint"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "node_id",
+          "node_class",
+          "label"
+        ],
+        "title": "EvidenceGraphNode"
+      },
+      "EvidenceGraphNodeClass": {
+        "type": "string",
+        "enum": [
+          "sample",
+          "organism",
+          "drug",
+          "gene",
+          "mechanism",
+          "phenotype_prediction",
+          "novelty",
+          "quality_control",
+          "actionability",
+          "rationale",
+          "decision",
+          "artifact",
+          "citation",
+          "copilot",
+          "execution_gate",
+          "reasoning_trace",
+          "policy",
+          "warning"
+        ],
+        "title": "EvidenceGraphNodeClass"
+      },
+      "EvidenceGraphStats": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "node_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Node Count"
+          },
+          "edge_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Edge Count"
+          },
+          "cluster_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Cluster Count"
+          },
+          "evidence_nodes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Evidence Nodes"
+          },
+          "citation_nodes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Citation Nodes"
+          },
+          "artifact_nodes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Artifact Nodes",
+            "default": 0
+          },
+          "linked_artifact_nodes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Linked Artifact Nodes",
+            "default": 0
+          },
+          "artifact_linkage_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Artifact Linkage Ratio",
+            "default": 1.0
+          },
+          "linked_citation_nodes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Linked Citation Nodes",
+            "default": 0
+          },
+          "citation_linkage_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Citation Linkage Ratio",
+            "default": 1.0
+          },
+          "warning_nodes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Warning Nodes",
+            "default": 0
+          },
+          "connected_component_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Connected Component Count",
+            "default": 0
+          },
+          "weakly_connected": {
+            "type": "boolean",
+            "title": "Weakly Connected",
+            "default": true
+          },
+          "isolated_node_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Isolated Node Count",
+            "default": 0
+          },
+          "isolated_node_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Isolated Node Ids"
+          },
+          "required_node_classes": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphNodeClass"
+            },
+            "type": "array",
+            "title": "Required Node Classes"
+          },
+          "present_node_classes": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphNodeClass"
+            },
+            "type": "array",
+            "title": "Present Node Classes"
+          },
+          "missing_node_classes": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceGraphNodeClass"
+            },
+            "type": "array",
+            "title": "Missing Node Classes"
+          },
+          "completeness_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Completeness Ratio"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "node_count",
+          "edge_count",
+          "cluster_count",
+          "evidence_nodes",
+          "citation_nodes",
+          "completeness_ratio"
+        ],
+        "title": "EvidenceGraphStats"
+      },
+      "EvidenceGraphStyleHint": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.evidence_graph.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "tone": {
+            "$ref": "#/components/schemas/EvidenceGraphStyleTone",
+            "default": "neutral"
+          },
+          "color_token": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color Token"
+          },
+          "icon": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Icon"
+          },
+          "importance": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Importance",
+            "default": 1
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "EvidenceGraphStyleHint"
+      },
+      "EvidenceGraphStyleTone": {
+        "type": "string",
+        "enum": [
+          "neutral",
+          "sample",
+          "evidence",
+          "risk",
+          "policy",
+          "ai",
+          "gate",
+          "decision",
+          "caveat"
+        ],
+        "title": "EvidenceGraphStyleTone"
+      },
+      "EvidenceTableBlock": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "columns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceTableRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "EvidenceTableBlock"
+      },
+      "EvidenceTableRow": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "row_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Row Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "cells": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Cells"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "row_id",
+          "label",
+          "cells"
+        ],
+        "title": "EvidenceTableRow"
+      },
+      "ExecutionGateCheck": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "check_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Check Id"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ExecutionGateCheckCategory"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ExecutionGateCheckStatus"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 5,
+            "title": "Detail"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "observed_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed Value"
+          },
+          "expected_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "check_id",
+          "category",
+          "status",
+          "title",
+          "detail"
+        ],
+        "title": "ExecutionGateCheck"
+      },
+      "ExecutionGateCheckCategory": {
+        "type": "string",
+        "enum": [
+          "identity",
+          "evidence_coverage",
+          "numeric_consistency",
+          "citation_validity",
+          "policy_alignment",
+          "reasoning_trace",
+          "artifact_coverage",
+          "safety_boundary"
+        ],
+        "title": "ExecutionGateCheckCategory"
+      },
+      "ExecutionGateCheckStatus": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "warn",
+          "fail"
+        ],
+        "title": "ExecutionGateCheckStatus"
+      },
+      "ExecutionGateDecision": {
+        "type": "string",
+        "enum": [
+          "allow",
+          "review",
+          "block"
+        ],
+        "title": "ExecutionGateDecision"
+      },
+      "ExecutionGateIssue": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "issue_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Issue Id"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ExecutionGateCheckCategory"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/ExecutionGateIssueSeverity"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 5,
+            "title": "Detail"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "issue_id",
+          "category",
+          "severity",
+          "title",
+          "detail"
+        ],
+        "title": "ExecutionGateIssue"
+      },
+      "ExecutionGateIssueSeverity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "warning",
+          "blocking"
+        ],
+        "title": "ExecutionGateIssueSeverity"
+      },
+      "ExecutionGateReport": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "decision": {
+            "$ref": "#/components/schemas/TriageOutcome"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          },
+          "gate_decision": {
+            "$ref": "#/components/schemas/ExecutionGateDecision"
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 10,
+            "title": "Summary"
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/ExecutionGateCheck"
+            },
+            "type": "array",
+            "title": "Checks"
+          },
+          "evidence_coverage": {
+            "$ref": "#/components/schemas/EvidenceCoverageSummary"
+          },
+          "numeric_consistency": {
+            "$ref": "#/components/schemas/NumericConsistencySummary"
+          },
+          "citation_validity": {
+            "$ref": "#/components/schemas/CitationValiditySummary"
+          },
+          "policy_alignment": {
+            "$ref": "#/components/schemas/PolicyAlignmentSummary"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ExecutionGateIssue"
+            },
+            "type": "array",
+            "title": "Issues"
+          },
+          "policy_hash": {
+            "type": "string",
+            "title": "Policy Hash"
+          },
+          "audit_fingerprint": {
+            "type": "string",
+            "title": "Audit Fingerprint"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "decision",
+          "severity",
+          "gate_decision",
+          "summary",
+          "evidence_coverage",
+          "numeric_consistency",
+          "citation_validity",
+          "policy_alignment",
+          "policy_hash",
+          "audit_fingerprint"
+        ],
+        "title": "ExecutionGateReport"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "JobCopilotResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_status": {
+            "$ref": "#/components/schemas/JobStatus"
+          },
+          "output_origin": {
+            "$ref": "#/components/schemas/CopilotOutputOrigin"
+          },
+          "copilot": {
+            "$ref": "#/components/schemas/CopilotResponse"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_status",
+          "output_origin",
+          "copilot"
+        ],
+        "title": "JobCopilotResponse"
+      },
+      "JobDecisionResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_status": {
+            "$ref": "#/components/schemas/JobStatus"
+          },
+          "decision": {
+            "$ref": "#/components/schemas/DecisionObject"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_status",
+          "decision"
+        ],
+        "title": "JobDecisionResponse"
+      },
+      "JobSemanticUIResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "output_origin": {
+            "$ref": "#/components/schemas/CopilotOutputOrigin"
+          },
+          "semantic_ui": {
+            "$ref": "#/components/schemas/SemanticUIObject"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "output_origin",
+          "semantic_ui"
+        ],
+        "title": "JobSemanticUIResponse"
+      },
+      "JobState": {
+        "type": "string",
+        "enum": [
+          "queued",
+          "running",
+          "evidence_ready",
+          "decision_ready",
+          "failed",
+          "degraded",
+          "completed"
+        ],
+        "title": "JobState"
+      },
+      "JobStatus": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobState"
+          },
+          "current_step": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Step"
+          },
+          "failure_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Code"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "submitted_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Submitted At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "status"
+        ],
+        "title": "JobStatus"
+      },
+      "JobThesysC1Response": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ThesysC1RenderStatus"
+          },
+          "output_origin": {
+            "$ref": "#/components/schemas/CopilotOutputOrigin"
+          },
+          "semantic_ui": {
+            "$ref": "#/components/schemas/SemanticUIObject"
+          },
+          "c1_response": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "C1 Response"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "fallback_required": {
+            "type": "boolean",
+            "title": "Fallback Required",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "status",
+          "output_origin",
+          "semantic_ui"
+        ],
+        "title": "JobThesysC1Response"
+      },
+      "MechanismSupportLevel": {
+        "type": "string",
+        "enum": [
+          "supported",
+          "partial",
+          "weak",
+          "screen_only"
+        ],
+        "title": "MechanismSupportLevel"
+      },
+      "MechanisticEvidence": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "source_tool": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 3,
+            "title": "Source Tool",
+            "default": "amrfinderplus"
+          },
+          "gene_symbol": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gene Symbol"
+          },
+          "mutation": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mutation"
+          },
+          "mechanism_class": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Mechanism Class"
+          },
+          "drug_association": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Drug Association"
+          },
+          "support_level": {
+            "$ref": "#/components/schemas/MechanismSupportLevel"
+          },
+          "interpretation": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 5,
+            "title": "Interpretation"
+          },
+          "raw_row_index": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Row Index"
+          },
+          "raw_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Artifact Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "mechanism_class",
+          "support_level",
+          "interpretation"
+        ],
+        "title": "MechanisticEvidence"
+      },
+      "MetricDatum": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 2,
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              }
+            ],
+            "title": "Value"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 24
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "value"
+        ],
+        "title": "MetricDatum"
+      },
+      "NoveltyAssessment": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "reference_snapshot_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Reference Snapshot Id"
+          },
+          "nearest_neighbor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nearest Neighbor Id"
+          },
+          "nearest_neighbor_distance": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nearest Neighbor Distance"
+          },
+          "novelty_score": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Novelty Score"
+          },
+          "novelty_percentile": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 100.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Novelty Percentile"
+          },
+          "novelty_bucket": {
+            "$ref": "#/components/schemas/NoveltyBucket",
+            "default": "unknown"
+          },
+          "missing_reference": {
+            "type": "boolean",
+            "title": "Missing Reference",
+            "default": false
+          },
+          "uncertainty_flag": {
+            "type": "boolean",
+            "title": "Uncertainty Flag",
+            "default": false
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "reference_snapshot_id"
+        ],
+        "title": "NoveltyAssessment"
+      },
+      "NoveltyBucket": {
+        "type": "string",
+        "enum": [
+          "known",
+          "elevated",
+          "high",
+          "unknown"
+        ],
+        "title": "NoveltyBucket"
+      },
+      "NumericConsistencySummary": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "checked_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Checked Fields"
+          },
+          "matched_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Matched Fields"
+          },
+          "mismatched_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Mismatched Fields"
+          },
+          "tolerance": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Tolerance",
+            "default": 0.001
+          },
+          "consistency_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Consistency Ratio"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "consistency_ratio"
+        ],
+        "title": "NumericConsistencySummary"
+      },
+      "OrganismConsistency": {
+        "type": "string",
+        "enum": [
+          "match",
+          "mismatch",
+          "unknown"
+        ],
+        "title": "OrganismConsistency"
+      },
+      "OrganismHint": {
+        "type": "string",
+        "enum": [
+          "e_coli",
+          "s_aureus"
+        ],
+        "title": "OrganismHint"
+      },
+      "PhenotypePrediction": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "predicted_phenotype": {
+            "$ref": "#/components/schemas/PredictedPhenotype"
+          },
+          "probability": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Probability"
+          },
+          "calibration_status": {
+            "$ref": "#/components/schemas/CalibrationStatus",
+            "default": "not_available"
+          },
+          "uncertainty_score": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uncertainty Score"
+          },
+          "feature_set_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Feature Set Version"
+          },
+          "model_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Model Version"
+          },
+          "model_training_split_context": {
+            "$ref": "#/components/schemas/SplitContext",
+            "default": "smoke"
+          },
+          "input_source_context": {
+            "$ref": "#/components/schemas/SourceContext",
+            "default": "other"
+          },
+          "input_provenance_source": {
+            "$ref": "#/components/schemas/ProvenanceSource",
+            "default": "other"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "predicted_phenotype",
+          "probability",
+          "feature_set_version",
+          "model_version"
+        ],
+        "title": "PhenotypePrediction"
+      },
+      "PolicyAlignmentSummary": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.execution_gate.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "policy_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Policy Version"
+          },
+          "triage_matches_decision": {
+            "type": "boolean",
+            "title": "Triage Matches Decision"
+          },
+          "severity_matches_decision": {
+            "type": "boolean",
+            "title": "Severity Matches Decision"
+          },
+          "next_step_matches_decision": {
+            "type": "boolean",
+            "title": "Next Step Matches Decision"
+          },
+          "unsafe_claims_detected": {
+            "type": "boolean",
+            "title": "Unsafe Claims Detected",
+            "default": false
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Notes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "policy_version",
+          "triage_matches_decision",
+          "severity_matches_decision",
+          "next_step_matches_decision"
+        ],
+        "title": "PolicyAlignmentSummary"
+      },
+      "PredictedPhenotype": {
+        "type": "string",
+        "enum": [
+          "resistant",
+          "susceptible",
+          "intermediate",
+          "unknown"
+        ],
+        "title": "PredictedPhenotype"
+      },
+      "ProvenanceSource": {
+        "type": "string",
+        "enum": [
+          "bv_brc",
+          "ncbi_datasets",
+          "fixture",
+          "local_upload",
+          "other"
+        ],
+        "title": "ProvenanceSource"
+      },
+      "QCStatus": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "warn",
+          "fail"
+        ],
+        "title": "QCStatus"
+      },
+      "QueueBlock": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/QueueItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "QueueBlock"
+      },
+      "QueueItem": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "triage": {
+            "$ref": "#/components/schemas/TriageOutcome"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobState"
+          },
+          "queue_priority": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Queue Priority"
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 5,
+            "title": "Headline"
+          },
+          "rationale_codes": {
+            "items": {
+              "$ref": "#/components/schemas/RationaleCode"
+            },
+            "type": "array",
+            "title": "Rationale Codes"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "triage",
+          "severity",
+          "status",
+          "queue_priority",
+          "headline"
+        ],
+        "title": "QueueItem"
+      },
+      "QueueSummaryResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/QueueItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "QueueSummaryResponse"
+      },
+      "RationaleCode": {
+        "type": "string",
+        "enum": [
+          "actionability_threshold_met",
+          "actionability_threshold_not_met",
+          "concordant_signal_present",
+          "high_lineage_novelty",
+          "manual_confirmation_required",
+          "metadata_incomplete",
+          "model_uncertainty_high",
+          "no_supported_mechanism",
+          "novelty_reference_sparse",
+          "qc_warning_present",
+          "supported_mechanism_present"
+        ],
+        "title": "RationaleCode"
+      },
+      "ReasoningTrace": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.reasoning_trace.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "decision": {
+            "$ref": "#/components/schemas/TriageOutcome"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 10,
+            "title": "Summary"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningTraceStep"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Steps"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/ReasoningTraceCoverage"
+          },
+          "caveats": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningTraceCaveat"
+            },
+            "type": "array",
+            "title": "Caveats"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "decision",
+          "severity",
+          "summary",
+          "steps",
+          "coverage"
+        ],
+        "title": "ReasoningTrace"
+      },
+      "ReasoningTraceCaveat": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.reasoning_trace.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "caveat_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Caveat Id"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/ReasoningTraceCaveatSeverity"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 5,
+            "title": "Detail"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "caveat_id",
+          "severity",
+          "title",
+          "detail"
+        ],
+        "title": "ReasoningTraceCaveat"
+      },
+      "ReasoningTraceCaveatSeverity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "warning",
+          "limitation"
+        ],
+        "title": "ReasoningTraceCaveatSeverity"
+      },
+      "ReasoningTraceCoverage": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.reasoning_trace.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "required_step_types": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningTraceStepType"
+            },
+            "type": "array",
+            "title": "Required Step Types"
+          },
+          "present_step_types": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningTraceStepType"
+            },
+            "type": "array",
+            "title": "Present Step Types"
+          },
+          "missing_step_types": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningTraceStepType"
+            },
+            "type": "array",
+            "title": "Missing Step Types"
+          },
+          "required_steps": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Required Steps"
+          },
+          "present_steps": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "title": "Present Steps"
+          },
+          "coverage_ratio": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Coverage Ratio"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "required_steps",
+          "present_steps",
+          "coverage_ratio"
+        ],
+        "title": "ReasoningTraceCoverage"
+      },
+      "ReasoningTraceSourceRef": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.reasoning_trace.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "evidence_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Evidence Id"
+          },
+          "source_type": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Source Type",
+            "default": "context"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "evidence_id"
+        ],
+        "title": "ReasoningTraceSourceRef"
+      },
+      "ReasoningTraceStep": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.reasoning_trace.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "step_number": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Step Number"
+          },
+          "step_type": {
+            "$ref": "#/components/schemas/ReasoningTraceStepType"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 1200,
+            "minLength": 10,
+            "title": "Text"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReasoningTraceStepStatus",
+            "default": "grounded"
+          },
+          "evidence_refs": {
+            "items": {
+              "$ref": "#/components/schemas/ReasoningTraceSourceRef"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "caveat_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Caveat Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "step_number",
+          "step_type",
+          "title",
+          "text"
+        ],
+        "title": "ReasoningTraceStep"
+      },
+      "ReasoningTraceStepStatus": {
+        "type": "string",
+        "enum": [
+          "grounded",
+          "caveated"
+        ],
+        "title": "ReasoningTraceStepStatus"
+      },
+      "ReasoningTraceStepType": {
+        "type": "string",
+        "enum": [
+          "sample_context",
+          "phenotype_prediction",
+          "mechanistic_evidence",
+          "mechanism_drug_interpretation",
+          "novelty_lineage_shift",
+          "qc_metadata_limitations",
+          "actionability_policy",
+          "final_triage"
+        ],
+        "title": "ReasoningTraceStepType"
+      },
+      "RiskChartBlock": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "chart_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Chart Id"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "chart_type": {
+            "$ref": "#/components/schemas/ChartType"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/RiskChartPoint"
+            },
+            "type": "array",
+            "title": "Points"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "chart_id",
+          "title",
+          "chart_type"
+        ],
+        "title": "RiskChartBlock"
+      },
+      "RiskChartPoint": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "value"
+        ],
+        "title": "RiskChartPoint"
+      },
+      "SafetyProfileAxis": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Label"
+          },
+          "value": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Value"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "value"
+        ],
+        "title": "SafetyProfileAxis"
+      },
+      "SafetyProfileBlock": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "axes": {
+            "items": {
+              "$ref": "#/components/schemas/SafetyProfileAxis"
+            },
+            "type": "array",
+            "title": "Axes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "SafetyProfileBlock"
+      },
+      "SampleInput": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "organism_hint": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OrganismHint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "fasta_path": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fasta Path"
+          },
+          "fasta_uri": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fasta Uri"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/SampleMetadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sample_id",
+          "target_drug"
+        ],
+        "title": "SampleInput"
+      },
+      "SampleMetadata": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "accession": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accession"
+          },
+          "collection_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Collection Date"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceContext",
+            "default": "agricultural_surveillance_proxy"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country"
+          },
+          "provenance_source": {
+            "$ref": "#/components/schemas/ProvenanceSource",
+            "default": "other"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SampleMetadata"
+      },
+      "SemanticUIObject": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "decision_card": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DecisionCardBlock"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence_table": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EvidenceTableBlock"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "risk_charts": {
+            "items": {
+              "$ref": "#/components/schemas/RiskChartBlock"
+            },
+            "type": "array",
+            "title": "Risk Charts"
+          },
+          "safety_profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SafetyProfileBlock"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "queue_block": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QueueBlock"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Notes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SemanticUIObject"
+      },
+      "SeverityLevel": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ],
+        "title": "SeverityLevel"
+      },
+      "SourceContext": {
+        "type": "string",
+        "enum": [
+          "bovine_mastitis",
+          "agricultural_surveillance_proxy",
+          "fixture",
+          "local_upload",
+          "other"
+        ],
+        "title": "SourceContext"
+      },
+      "SplitContext": {
+        "type": "string",
+        "enum": [
+          "smoke",
+          "random",
+          "lineage_aware",
+          "fixture"
+        ],
+        "title": "SplitContext"
+      },
+      "ThesysC1RenderStatus": {
+        "type": "string",
+        "enum": [
+          "rendered",
+          "unavailable",
+          "error"
+        ],
+        "title": "ThesysC1RenderStatus"
+      },
+      "TriageDecision": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "triage": {
+            "$ref": "#/components/schemas/TriageOutcome"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          },
+          "recommended_next_step": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 5,
+            "title": "Recommended Next Step"
+          },
+          "threshold_version": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Threshold Version"
+          },
+          "rationale_codes": {
+            "items": {
+              "$ref": "#/components/schemas/RationaleCode"
+            },
+            "type": "array",
+            "title": "Rationale Codes"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "triage",
+          "severity",
+          "recommended_next_step",
+          "threshold_version"
+        ],
+        "title": "TriageDecision"
+      },
+      "TriageOutcome": {
+        "type": "string",
+        "enum": [
+          "act",
+          "review",
+          "defer_to_lab"
+        ],
+        "title": "TriageOutcome"
+      },
+      "V2AuditBaselineProvenance": {
+        "type": "string",
+        "enum": [
+          "fixture_trained_smoke",
+          "public_snapshot",
+          "live_trained",
+          "unknown"
+        ],
+        "title": "V2AuditBaselineProvenance"
+      },
+      "V2AuditBundle": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.audit_bundle.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/V2AuditProvenance"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/V2AuditSummary"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/V2AuditSection"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Sections"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "provenance",
+          "summary",
+          "sections"
+        ],
+        "title": "V2AuditBundle"
+      },
+      "V2AuditCheck": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.audit_bundle.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "check_id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 3,
+            "title": "Check Id"
+          },
+          "section_id": {
+            "$ref": "#/components/schemas/V2AuditSectionId"
+          },
+          "status": {
+            "$ref": "#/components/schemas/V2AuditStatus"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 5,
+            "title": "Detail"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          },
+          "endpoint": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 240,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Endpoint"
+          },
+          "observed_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed Value"
+          },
+          "expected_value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Value"
+          },
+          "blocking": {
+            "type": "boolean",
+            "title": "Blocking",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "check_id",
+          "section_id",
+          "status",
+          "title",
+          "detail"
+        ],
+        "title": "V2AuditCheck"
+      },
+      "V2AuditProvenance": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.audit_bundle.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "job_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Job Id"
+          },
+          "sample_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Sample Id"
+          },
+          "target_drug": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 3,
+            "title": "Target Drug"
+          },
+          "input_provenance": {
+            "$ref": "#/components/schemas/ProvenanceSource"
+          },
+          "source_context": {
+            "$ref": "#/components/schemas/SourceContext"
+          },
+          "split_context": {
+            "$ref": "#/components/schemas/SplitContext"
+          },
+          "baseline_provenance": {
+            "$ref": "#/components/schemas/V2AuditBaselineProvenance"
+          },
+          "live_input": {
+            "type": "boolean",
+            "title": "Live Input"
+          },
+          "fixture_trained_baseline": {
+            "type": "boolean",
+            "title": "Fixture Trained Baseline"
+          },
+          "provenance_split_label": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 10,
+            "title": "Provenance Split Label"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 20,
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "job_id",
+          "sample_id",
+          "target_drug",
+          "input_provenance",
+          "source_context",
+          "split_context",
+          "baseline_provenance",
+          "live_input",
+          "fixture_trained_baseline",
+          "provenance_split_label",
+          "detail"
+        ],
+        "title": "V2AuditProvenance"
+      },
+      "V2AuditSection": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.audit_bundle.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "section_id": {
+            "$ref": "#/components/schemas/V2AuditSectionId"
+          },
+          "status": {
+            "$ref": "#/components/schemas/V2AuditStatus"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 140,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 10,
+            "title": "Summary"
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/V2AuditCheck"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Checks"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Refs"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "section_id",
+          "status",
+          "title",
+          "summary",
+          "checks"
+        ],
+        "title": "V2AuditSection"
+      },
+      "V2AuditSectionId": {
+        "type": "string",
+        "enum": [
+          "runtime_mode",
+          "live_input_proof",
+          "predictive_baseline",
+          "openrouter_proof",
+          "thesys_proof",
+          "execution_gate",
+          "reasoning_trace",
+          "evidence_graph",
+          "artifact_coverage"
+        ],
+        "title": "V2AuditSectionId"
+      },
+      "V2AuditStatus": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "warn",
+          "fail",
+          "pending"
+        ],
+        "title": "V2AuditStatus"
+      },
+      "V2AuditSummary": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "default": "v2.audit_bundle.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "overall_status": {
+            "$ref": "#/components/schemas/V2AuditStatus"
+          },
+          "section_count": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Section Count"
+          },
+          "total_checks": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Total Checks"
+          },
+          "passing_checks": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Passing Checks"
+          },
+          "warning_checks": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Warning Checks"
+          },
+          "failed_checks": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Failed Checks"
+          },
+          "pending_checks": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pending Checks"
+          },
+          "live_ready": {
+            "type": "boolean",
+            "title": "Live Ready"
+          },
+          "provider_proof_required": {
+            "type": "boolean",
+            "title": "Provider Proof Required",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "overall_status",
+          "section_count",
+          "total_checks",
+          "passing_checks",
+          "warning_checks",
+          "failed_checks",
+          "pending_checks",
+          "live_ready"
+        ],
+        "title": "V2AuditSummary"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

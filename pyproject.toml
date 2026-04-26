@@ -1,0 +1,25 @@
+[project]
+name = "safesurveil-aixbio"
+version = "0.1.0"
+description = "Local implementation workspace for the SafeSurveil-AIxBio MVP."
+requires-python = ">=3.13"
+dependencies = [
+  "fastapi>=0.135,<1",
+  "networkx>=3.5,<4",
+  "pydantic>=2.12,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28,<1",
+  "pytest>=8.3,<9",
+  "uvicorn>=0.35,<1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -m \"not live\""
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+  "live: exercises real credentials, network access, or locally installed external tools",
+]

@@ -1,0 +1,58 @@
+{
+  "scope_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "planning_status": "locked_for_mvp",
+  "mvp_goal": "hackathon_mvp",
+  "smoke_workflow": {
+    "organism": "e_coli",
+    "target_drug": "tetracycline",
+    "status": "locked",
+    "notes": [
+      "This is the first end-to-end implementation slice.",
+      "Later expansion is allowed only inside the locked organism set."
+    ]
+  },
+  "locked_organisms": [
+    "e_coli",
+    "s_aureus"
+  ],
+  "cross_organism_shared_drugs": [
+    "tetracycline"
+  ],
+  "drug_panel": {
+    "e_coli": {
+      "locked_primary": [
+        "tetracycline"
+      ],
+      "candidate_expansion": [
+        "ampicillin",
+        "ciprofloxacin"
+      ],
+      "fallback_if_labels_sparse": [
+        "trimethoprim_sulfamethoxazole"
+      ]
+    },
+    "s_aureus": {
+      "locked_primary": [
+        "tetracycline"
+      ],
+      "candidate_expansion": [
+        "oxacillin",
+        "erythromycin"
+      ],
+      "fallback_if_labels_sparse": [
+        "clindamycin"
+      ]
+    }
+  },
+  "planning_targets": {
+    "smoke_fixture_cases_target": 1,
+    "minimum_public_label_count_per_pair": 25,
+    "preferred_public_label_count_per_pair": 50
+  },
+  "guardrails": {
+    "max_unique_drugs_for_mvp": 5,
+    "do_not_expand_beyond_locked_organisms": true,
+    "do_not_change_smoke_pair_without_plan_update": true
+  }
+}

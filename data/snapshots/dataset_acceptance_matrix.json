@@ -1,0 +1,65 @@
+{
+  "matrix_version": "0.1.0",
+  "created_at": "2026-04-20T00:00:00Z",
+  "smoke_workflow": {
+    "pass": {
+      "requirements": [
+        "At least one contract-valid smoke fixture or public record exists for e_coli plus tetracycline.",
+        "Scope, normalization, and filtering policies are present."
+      ],
+      "next_action": "continue implementation"
+    },
+    "warn": {
+      "requirements": [
+        "Only fixture-backed smoke execution is available."
+      ],
+      "next_action": "continue backend and UI work, but label outputs fixture-backed"
+    },
+    "fail": {
+      "requirements": [
+        "No usable smoke fixture or public record exists."
+      ],
+      "next_action": "repair fixture path before proceeding"
+    }
+  },
+  "training_readiness": {
+    "pass": {
+      "minimum_label_count_per_pair": 25,
+      "lineage_aware_split_ready": true,
+      "inferred_labels_excluded": true
+    },
+    "warn": {
+      "minimum_label_count_per_pair": 10,
+      "lineage_aware_split_ready": true,
+      "notes": "Use only for exploratory baselines and narrow claims."
+    },
+    "fail": {
+      "minimum_label_count_per_pair": 0,
+      "notes": "Do not present training metrics for this pair."
+    }
+  },
+  "demo_readiness": {
+    "pass": {
+      "requirements": [
+        "One known-good smoke case exists.",
+        "One contrastive case or clear queue variant exists."
+      ]
+    },
+    "warn": {
+      "requirements": [
+        "Only one strong fixture-backed case exists."
+      ]
+    }
+  },
+  "fallback_actions": [
+    "Stay locked on the smoke pair before expanding the drug panel.",
+    "Use fixture-backed decision and UI smoke outputs when public retrieval or tooling is delayed.",
+    "Reduce the public drug panel instead of stretching into sparse labels.",
+    "Delay benchmark claims until training_readiness reaches pass."
+  ],
+  "expansion_criteria": [
+    "The smoke pair runs end to end without manual data patching.",
+    "At least one additional organism-drug pair reaches training_readiness warn or better.",
+    "Filtering and split manifests are saved alongside the dataset snapshot."
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "feature_set_version": "baseline_hybrid_v1",
+  "target_scope": "e_coli_tetracycline_smoke",
+  "organism": "e_coli",
+  "target_drug": "tetracycline",
+  "split_context": "fixture",
+  "split_id": "fixture_lineage_smoke_v1",
+  "snapshot_id": "phase3_foundation_2026_04_20",
+  "storage_format": "json",
+  "feature_names": [
+    "supported_target_mechanism_present",
+    "any_target_mechanism_present",
+    "tet_marker_present",
+    "qc_warning_present",
+    "ambiguity_flag",
+    "metadata_complete",
+    "novelty_score"
+  ],
+  "rows": [
+    {
+      "sample_id": "sample_001",
+      "feature_set_version": "baseline_hybrid_v1",
+      "values": {
+        "supported_target_mechanism_present": 1.0,
+        "any_target_mechanism_present": 1.0,
+        "tet_marker_present": 1.0,
+        "qc_warning_present": 0.0,
+        "ambiguity_flag": 0.0,
+        "metadata_complete": 1.0,
+        "novelty_score": 0.34
+      }
+    },
+    {
+      "sample_id": "train_ec_tet_res_002",
+      "feature_set_version": "baseline_hybrid_v1",
+      "values": {
+        "supported_target_mechanism_present": 1.0,
+        "any_target_mechanism_present": 1.0,
+        "tet_marker_present": 1.0,
+        "qc_warning_present": 0.0,
+        "ambiguity_flag": 0.0,
+        "metadata_complete": 1.0,
+        "novelty_score": 0.27
+      }
+    },
+    {
+      "sample_id": "train_ec_tet_res_003",
+      "feature_set_version": "baseline_hybrid_v1",
+      "values": {
+        "supported_target_mechanism_present": 1.0,
+        "any_target_mechanism_present": 1.0,
+        "tet_marker_present": 1.0,
+        "qc_warning_present": 1.0,
+        "ambiguity_flag": 0.0,
+        "metadata_complete": 0.67,
+        "novelty_score": 0.41
+      }
+    },
+    {
+      "sample_id": "train_ec_tet_sus_001",
+      "feature_set_version": "baseline_hybrid_v1",
+      "values": {
+        "supported_target_mechanism_present": 0.0,
+        "any_target_mechanism_present": 0.0,
+        "tet_marker_present": 0.0,
+        "qc_warning_present": 0.0,
+        "ambiguity_flag": 0.0,
+        "metadata_complete": 1.0,
+        "novelty_score": 0.09
+      }
+    },
+    {
+      "sample_id": "train_ec_tet_sus_002",
+      "feature_set_version": "baseline_hybrid_v1",
+      "values": {
+        "supported_target_mechanism_present": 0.0,
+        "any_target_mechanism_present": 0.0,
+        "tet_marker_present": 0.0,
+        "qc_warning_present": 0.0,
+        "ambiguity_flag": 0.0,
+        "metadata_complete": 1.0,
+        "novelty_score": 0.14
+      }
+    },
+    {
+      "sample_id": "train_ec_tet_int_001",
+      "feature_set_version": "baseline_hybrid_v1",
+      "values": {
+        "supported_target_mechanism_present": 0.0,
+        "any_target_mechanism_present": 1.0,
+        "tet_marker_present": 1.0,
+        "qc_warning_present": 1.0,
+        "ambiguity_flag": 1.0,
+        "metadata_complete": 0.67,
+        "novelty_score": 0.22
+      }
+    }
+  ],
+  "notes": [
+    "This fixture-backed matrix is only for the first smoke training workflow.",
+    "Values are normalized to [0, 1] so the baseline can stay lightweight and interpretable."
+  ]
+}

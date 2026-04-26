@@ -1,0 +1,226 @@
+{
+  "schema_version": "v2.audit_bundle.v1",
+  "job_id": "job_v2_audit_001",
+  "sample_id": "sample_live_001",
+  "target_drug": "tetracycline",
+  "provenance": {
+    "schema_version": "v2.audit_bundle.v1",
+    "job_id": "job_v2_audit_001",
+    "sample_id": "sample_live_001",
+    "target_drug": "tetracycline",
+    "input_provenance": "ncbi_datasets",
+    "source_context": "agricultural_surveillance_proxy",
+    "split_context": "fixture",
+    "baseline_provenance": "fixture_trained_smoke",
+    "live_input": true,
+    "fixture_trained_baseline": true,
+    "provenance_split_label": "Live input, fixture-trained baseline",
+    "detail": "The input sequence was retrieved through the live data path while the current first-pass predictive baseline remains fixture trained."
+  },
+  "summary": {
+    "schema_version": "v2.audit_bundle.v1",
+    "overall_status": "pass",
+    "section_count": 9,
+    "total_checks": 9,
+    "passing_checks": 9,
+    "warning_checks": 0,
+    "failed_checks": 0,
+    "pending_checks": 0,
+    "live_ready": true,
+    "provider_proof_required": true
+  },
+  "sections": [
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "runtime_mode",
+      "status": "pass",
+      "title": "Runtime mode",
+      "summary": "Backend reports live candidate mode without blockers.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "runtime_live_ready",
+          "section_id": "runtime_mode",
+          "status": "pass",
+          "title": "Live runtime ready",
+          "detail": "Health reports live_mode_ready=true and no live blockers.",
+          "endpoint": "/health",
+          "observed_value": true,
+          "expected_value": true
+        }
+      ]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "live_input_proof",
+      "status": "pass",
+      "title": "Live input proof",
+      "summary": "The selected job uses a live-retrieved input sequence.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "input_is_live_retrieved",
+          "section_id": "live_input_proof",
+          "status": "pass",
+          "title": "Input provenance is live",
+          "detail": "The audit provenance marks live input separately from the fixture-trained baseline.",
+          "evidence_refs": ["decision_object__summary"],
+          "observed_value": "ncbi_datasets",
+          "expected_value": "non_fixture_input"
+        }
+      ],
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "predictive_baseline",
+      "status": "pass",
+      "title": "Predictive baseline",
+      "summary": "The current predictive baseline is fixture trained and explicitly labeled.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "fixture_baseline_disclosed",
+          "section_id": "predictive_baseline",
+          "status": "pass",
+          "title": "Fixture baseline disclosed",
+          "detail": "The audit bundle keeps fixture-trained baseline provenance separate from live input provenance.",
+          "evidence_refs": ["phenotype_prediction__summary"],
+          "observed_value": "fixture_trained_smoke",
+          "expected_value": "explicit_baseline_label"
+        }
+      ],
+      "evidence_refs": ["phenotype_prediction__summary"]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "openrouter_proof",
+      "status": "pass",
+      "title": "OpenRouter proof",
+      "summary": "A fresh live copilot provider proof was recorded for the selected job.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "openrouter_live_response",
+          "section_id": "openrouter_proof",
+          "status": "pass",
+          "title": "OpenRouter live response",
+          "detail": "Provider proof reports live LLM origin rather than cached, fallback, or mock output.",
+          "endpoint": "/jobs/job_v2_audit_001/copilot/explanation?refresh=true",
+          "observed_value": "live",
+          "expected_value": "live"
+        }
+      ]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "thesys_proof",
+      "status": "pass",
+      "title": "Thesys proof",
+      "summary": "A live C1 render proof was recorded for the selected job.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "thesys_c1_rendered",
+          "section_id": "thesys_proof",
+          "status": "pass",
+          "title": "Thesys C1 rendered",
+          "detail": "Provider proof reports C1 rendered without requiring the React fallback.",
+          "endpoint": "/jobs/job_v2_audit_001/semantic-ui/c1",
+          "observed_value": "rendered",
+          "expected_value": "rendered"
+        }
+      ]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "execution_gate",
+      "status": "pass",
+      "title": "Execution gate",
+      "summary": "The execution gate allows the case with no blocking or warning checks.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "gate_allows",
+          "section_id": "execution_gate",
+          "status": "pass",
+          "title": "Gate allows",
+          "detail": "Verifier returns allow with matching identity, citations, numeric values, and policy boundaries.",
+          "endpoint": "/jobs/job_v2_audit_001/verification",
+          "evidence_refs": ["decision_object__summary"],
+          "observed_value": "allow",
+          "expected_value": "allow"
+        }
+      ],
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "reasoning_trace",
+      "status": "pass",
+      "title": "Reasoning trace",
+      "summary": "The deterministic trace covers all required reasoning steps.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "trace_complete",
+          "section_id": "reasoning_trace",
+          "status": "pass",
+          "title": "Trace complete",
+          "detail": "Reasoning trace coverage ratio is 1.0 with no missing required steps.",
+          "endpoint": "/jobs/job_v2_audit_001/reasoning-trace",
+          "evidence_refs": ["decision_object__summary"],
+          "observed_value": 1.0,
+          "expected_value": 1.0
+        }
+      ],
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "evidence_graph",
+      "status": "pass",
+      "title": "Evidence graph",
+      "summary": "The deterministic graph is complete, linked, and connected.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "graph_complete",
+          "section_id": "evidence_graph",
+          "status": "pass",
+          "title": "Graph complete",
+          "detail": "Evidence graph completeness, artifact linkage, and citation linkage all pass.",
+          "endpoint": "/jobs/job_v2_audit_001/evidence-graph",
+          "evidence_refs": ["decision_object__summary"],
+          "observed_value": 1.0,
+          "expected_value": 1.0
+        }
+      ],
+      "evidence_refs": ["decision_object__summary"]
+    },
+    {
+      "schema_version": "v2.audit_bundle.v1",
+      "section_id": "artifact_coverage",
+      "status": "pass",
+      "title": "Artifact coverage",
+      "summary": "Persisted artifacts are available for audit and preview.",
+      "checks": [
+        {
+          "schema_version": "v2.audit_bundle.v1",
+          "check_id": "artifacts_present",
+          "section_id": "artifact_coverage",
+          "status": "pass",
+          "title": "Artifacts present",
+          "detail": "Artifact manifest contains previewable decision, evidence, and sidecar records.",
+          "endpoint": "/jobs/job_v2_audit_001/artifacts",
+          "observed_value": 13,
+          "expected_value": 1
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "builder": "deterministic_v2_audit_bundle_contract_fixture",
+    "provider_calls_triggered": false
+  }
+}

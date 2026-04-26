@@ -1,0 +1,20 @@
+{
+  "sample_id": "sample_001",
+  "organism_hint": "e_coli",
+  "target_drug": "tetracycline",
+  "fasta_path": "data/fixtures/smoke/sample_001.fasta",
+  "metadata": {
+    "accession": "fixture_ec_001",
+    "collection_date": "2026-04-20",
+    "source": "agricultural_surveillance_proxy",
+    "country": "IN",
+    "provenance_source": "fixture"
+  },
+  "fixture_mode": "synthetic_demo_safe",
+  "label_status": "fixture_backed",
+  "expected_pipeline_mode": "format_and_contract_smoke_only",
+  "notes": [
+    "This fixture is safe for local contract and backend smoke checks.",
+    "Do not use fixture-backed results for benchmark claims."
+  ]
+}

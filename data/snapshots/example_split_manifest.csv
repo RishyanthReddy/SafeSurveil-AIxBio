@@ -1,0 +1,8 @@
+record_id,sample_id,organism,target_drug,phenotype,lineage_group_id,random_split,lineage_aware_split,notes
+fixture_ec_001,sample_001,e_coli,tetracycline,resistant,ec_tet_group_a,train,train,fixture shares lineage group with planned smoke public pair
+plan_ec_tetracycline_001,ec_pub_001,e_coli,tetracycline,resistant,ec_tet_group_a,test,train,kept in same lineage-aware split as related fixture example
+plan_ec_ampicillin_001,ec_pub_002,e_coli,ampicillin,susceptible,ec_amp_group_b,train,validation,illustrative expansion pair
+plan_ec_ciprofloxacin_001,ec_pub_003,e_coli,ciprofloxacin,intermediate,ec_cipro_group_c,validation,test,illustrative expansion pair
+plan_sa_tetracycline_001,sa_pub_001,s_aureus,tetracycline,resistant,sa_tet_group_d,test,test,illustrative expansion pair
+plan_sa_oxacillin_001,sa_pub_002,s_aureus,oxacillin,resistant,sa_oxa_group_e,train,train,illustrative expansion pair
+plan_sa_erythromycin_001,sa_pub_003,s_aureus,erythromycin,susceptible,sa_ery_group_f,validation,validation,illustrative expansion pair
