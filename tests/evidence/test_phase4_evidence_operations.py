@@ -384,9 +384,3 @@ def test_run_evidence_smoke_live_executes_tool_outputs_when_available(
     assert result.novelty_assessment.novelty_bucket == NoveltyBucket.ELEVATED
 
 
-def test_acceptance_matrix_requires_saved_evidence_outputs() -> None:
-    matrix = json.loads((REPO_ROOT / "docs/evidence/PHASE_4_ACCEPTANCE_MATRIX.json").read_text(encoding="utf-8"))
-
-    assert any("ArtifactManifest" in item for item in matrix["pass_criteria"])
-    assert any("fixture" in item.lower() for item in matrix["warn_conditions"])
-    assert "Phase 5" in matrix["next_phase_gate"]

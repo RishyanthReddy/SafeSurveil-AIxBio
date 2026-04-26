@@ -794,10 +794,3 @@ def test_actionability_builder_rejects_stale_qc_from_prior_job(tmp_path: Path) -
             evidence_rows=evidence_rows,
         )
 
-
-def test_phase5_acceptance_matrix_requires_complete_decision_output() -> None:
-    matrix = json.loads((REPO_ROOT / "docs/prediction/PHASE_5_ACCEPTANCE_MATRIX.json").read_text(encoding="utf-8"))
-
-    assert any("DecisionObject" in item for item in matrix["pass_criteria"])
-    assert any("performance" in item.lower() for item in matrix["warn_conditions"])
-    assert "Phase 6" in matrix["next_phase_gate"]

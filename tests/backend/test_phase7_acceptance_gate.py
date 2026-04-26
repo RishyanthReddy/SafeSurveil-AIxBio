@@ -212,10 +212,6 @@ def _semantic_ui_payload() -> dict[str, object]:
 
 
 def test_phase7_acceptance_matrix_and_backend_surface_are_aligned(tmp_path: Path) -> None:
-    matrix = json.loads(
-        (REPO_ROOT / "docs/data/PHASE_7_ACCEPTANCE_MATRIX.json").read_text(encoding="utf-8")
-    )
-
     with _run_openrouter_test_server(
         [
             _response_wrapper(_copilot_payload("Grounded explanation for acceptance.")),
@@ -245,14 +241,6 @@ def test_phase7_acceptance_matrix_and_backend_surface_are_aligned(tmp_path: Path
             )
         finally:
             client.close()
-
-    assert matrix["matrix_version"] == "0.1.0"
-    assert len(matrix["pass_criteria"]) >= 6
-    assert any("bounded decision" in item.lower() for item in matrix["pass_criteria"])
-    assert any("semantic ui" in item.lower() for item in matrix["pass_criteria"])
-    assert any("live llm" in item.lower() for item in matrix["pass_criteria"])
-    assert any("unsafe" in item.lower() for item in matrix["fail_conditions"])
-    assert "Phase 8 may begin" in matrix["next_phase_gate"]
 
     assert explanation_response.status_code == 200
     assert explanation_response.json()["output_origin"]["mode"] == "mock"

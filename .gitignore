@@ -2,6 +2,8 @@
 .env
 .env.*
 !.env.example
+BVBRC_Scraping_Guide.md
+local.patric_token
 
 # Python
 __pycache__/

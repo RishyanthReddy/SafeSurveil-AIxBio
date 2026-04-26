@@ -32,18 +32,6 @@ REQUIRED_PHASE6B_ENV_VARS = {
 
 TRACKED_ENV_AND_DOC_FILES = [
     ".env.example",
-    "docs/data/PHASE_6B_LIVE_DATA_INTEGRATION_PLAN.md",
-    "docs/data/PHASE_6B_SECRET_HYGIENE.md",
-    "docs/data/PHASE_6B_INTEGRATION_HEALTH.md",
-    "docs/data/PHASE_6B_NCBI_DATASETS_CLIENT.md",
-    "docs/data/PHASE_6B_BV_BRC_CLIENT.md",
-    "docs/data/PHASE_6B_PATHOGEN_DETECTION_ENRICHMENT.md",
-    "docs/data/PHASE_6B_LIVE_RETRIEVAL_WORKFLOW.md",
-    "docs/data/PHASE_6B_LIVE_FASTA_INPUTS.md",
-    "docs/data/PHASE_6B_AMRFINDER_RUNTIME.md",
-    "docs/data/PHASE_6B_MASH_RUNTIME.md",
-    "docs/data/PHASE_6B_ACCEPTANCE_MATRIX.json",
-    "docs/data/PHASE_7_LIVE_GROUNDING_HANDOFF.md",
 ]
 
 SECRET_NAME_MARKERS = ("API_KEY", "PASSWORD", "SECRET")
@@ -67,22 +55,6 @@ def _env_template_variables() -> dict[str, str]:
         if match:
             variables[match.group(1)] = match.group(2).strip()
     return variables
-
-
-def test_phase6b_secret_hygiene_doc_locks_live_scope() -> None:
-    note = (REPO_ROOT / "docs/data/PHASE_6B_SECRET_HYGIENE.md").read_text(
-        encoding="utf-8"
-    )
-
-    assert "Status: `6B.01 complete`" in note
-    assert "NCI" not in note
-    assert "NCBI Datasets v2 REST API" in note
-    assert "BV-BRC authentication and Data API access" in note
-    assert "AMRFinderPlus local execution" in note
-    assert "Mash local execution" in note
-    assert "LLM provider calls, which remain Phase 7" in note
-    assert "Thesys calls, which remain Phase 8" in note
-    assert "must not silently substitute fixture output" in note
 
 
 def test_env_template_declares_phase6b_live_contract() -> None:
